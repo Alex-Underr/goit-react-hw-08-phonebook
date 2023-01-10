@@ -1,0 +1,38 @@
+ul,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 5px;
+  margin: 0px;
+}
+
+.form {
+  font-family: Lucida Handwriting;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --background: white;
+  --border: rgba(0, 0, 0, 0.2);
+  --borderRadius: 1.225rem;
+  background-color: rgba(193, 209, 255, 0.66);
+  border: 1px solid var(--border);
+  border-radius: var(--borderRadius);
+  box-shadow: 0 1rem 1rem -0.75rem var(--border);
+  padding: 2rem;
+}
+.header {
+  text-align: center;
+  text-shadow: -2px 3px 9px rgb(48, 48, 48);
+}
+
+.formBack {
+  display: table;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
