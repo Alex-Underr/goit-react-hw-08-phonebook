@@ -1,9 +1,5 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 40px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
+  background-color: rgba(255, 255, 255, 0.604);
+  padding: 30px;
+  border-radius: 5%;
 }
