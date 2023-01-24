@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { login } from 'redux/operations/authOperation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -34,13 +37,26 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        break;
+    }
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    dispatch(login({ email, password }));
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -48,6 +64,7 @@ export default function Login() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          onSubmit={handleSubmit}
           className={style.form}
           style={{ marginTop: '50px' }}
           sx={{
@@ -78,9 +95,11 @@ export default function Login() {
               name="email"
               pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"
               autoComplete="email"
-              autoFocus
+              // autoFocus
               variant="filled"
               size="small"
+              value={email}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -93,11 +112,13 @@ export default function Login() {
               autoComplete="current-password"
               variant="filled"
               size="small"
+              value={password}
+              onChange={handleChange}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth

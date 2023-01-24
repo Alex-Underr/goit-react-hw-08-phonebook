@@ -42,4 +42,3 @@ export default function Home() {
     </>
   );
 }
-<script type="module" src="/src/main.jsx"></script>;

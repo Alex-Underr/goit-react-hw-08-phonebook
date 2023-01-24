@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { register } from 'redux/operations/authOperation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
@@ -12,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import style from './Register.module.css';
+
 function Copyright(props) {
   return (
     <Typography
@@ -33,13 +37,30 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Registration() {
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'name':
+        return setName(value);
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        break;
+    }
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    dispatch(register({ name, email, password }));
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -47,6 +68,7 @@ export default function Registration() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          onSubmit={handleSubmit}
           className={style.form}
           style={{ marginTop: '50px' }}
           sx={{
@@ -62,12 +84,7 @@ export default function Registration() {
           <Typography component="h1" variant="h5">
             Registration form
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -79,6 +96,8 @@ export default function Registration() {
               autoFocus
               variant="filled"
               size="small"
+              value={name}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -89,9 +108,11 @@ export default function Registration() {
               name="email"
               pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"
               autoComplete="email"
-              autoFocus
+              // autoFocus
               variant="filled"
               size="small"
+              value={email}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -104,6 +125,8 @@ export default function Registration() {
               autoComplete="current-password"
               variant="filled"
               size="small"
+              value={password}
+              onChange={handleChange}
             />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

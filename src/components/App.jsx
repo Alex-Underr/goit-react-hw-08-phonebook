@@ -3,19 +3,22 @@ import { lazy } from 'react';
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from 'redux/operations/contactsOperations';
+// import { fetchContacts } from 'redux/operations/contactsOperations';
+import { current } from 'redux/operations/authOperation';
 
 import NotFound from 'Pages/NotFound/NotFound';
-const AppBar = lazy(() => import('components/AppBar/AppBar'));
+import AppBar from 'components/AppBar/AppBar';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
 const Home = lazy(() => import('Pages/Home/Home'));
-const Contacts = lazy(() => import('components/Contacts/Contacts'));
+const Contacts = lazy(() => import('Pages/Contacts/Contacts'));
 const Registration = lazy(() => import('Pages/Register/Register'));
 const Login = lazy(() => import('Pages/Login/Login'));
 
 export function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(current());
   }, [dispatch]);
 
   return (
@@ -23,9 +26,13 @@ export function App() {
       <Routes>
         <Route path="/" element={<AppBar />}>
           <Route index element={<Home />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/contacts" element={<Contacts />} />
+          </Route>
+          <Route path="/" element={<PublicRoute />}>
+            <Route path="/register" element={<Registration />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

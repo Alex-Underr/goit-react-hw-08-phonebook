@@ -5,8 +5,9 @@ export const StyledLink = styled(NavLink)`
   display: inline-block;
   text-decoration: none;
   padding: 10px;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 600;
+  font-family: Slackey, cursive;
+
   color: #262727;
   font-size: 15px;
 

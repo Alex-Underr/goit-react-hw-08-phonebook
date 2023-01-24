@@ -18,7 +18,7 @@ export default function ContactForm() {
           `${evt.name} is already in contacts!`,
           3500
         )
-      : dispatch(addContact({ name, phone: number }));
+      : dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };

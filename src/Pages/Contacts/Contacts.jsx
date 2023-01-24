@@ -7,12 +7,14 @@ import {
   selectFetchContacts,
   selectError,
 } from 'redux/selectors/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 import styles from 'components/form.module.css';
+import { useEffect } from 'react';
+import { currentContacts } from 'redux/operations/contactsOperations';
 
 const override = {
   position: 'fixed',
@@ -25,6 +27,10 @@ export default function Contacts() {
   const contacts = useSelector(selectFetchContacts);
   const spinner = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(currentContacts());
+  }, [dispatch]);
 
   return (
     <div className={styles.formBack}>

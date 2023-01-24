@@ -2,6 +2,7 @@ import styles from './contactList.module.css';
 import { deleteContact } from 'redux/operations/contactsOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter, selectFetchContacts } from 'redux/selectors/selectors';
+
 export default function ContactList() {
   const dispatch = useDispatch();
   const filtered = useSelector(selectFilter);
@@ -15,7 +16,7 @@ export default function ContactList() {
 
   return (
     <ul>
-      {filteredContacts().map(({ id, name, phone, avatar }) => (
+      {filteredContacts().map(({ id, name, number, avatar }) => (
         <li key={id}>
           <div className={styles.list} id={id}>
             {avatar && (
@@ -34,7 +35,7 @@ export default function ContactList() {
             >
               {name}:
             </p>
-            <p style={{ fontStyle: 'italic' }}>{phone}</p>
+            <p style={{ fontStyle: 'italic' }}>{number}</p>
             <button
               className={styles.btn}
               onClick={() => dispatch(deleteContact(id))}
