@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserName } from 'redux/selectors/selectors';
+import { getUserName, getUserEmail } from 'redux/selectors/selectors';
 import { logout } from 'redux/operations/authOperation';
 import { StyledBadge } from './UserMenu.Style';
 import Stack from '@mui/material/Stack';
@@ -8,18 +8,10 @@ import s from './user.module.css';
 export function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(getUserName);
+  const email = useSelector(getUserEmail);
   return (
     <>
-      <Stack
-        direction="row"
-        spacing={0.5}
-        style={{
-          fontFamily: 'Slackey,cursive',
-          fontSize: '14px',
-          fontWeight: '700',
-          marginRight: '3px',
-        }}
-      >
+      <Stack direction="row" spacing={0.5} className={s.stack}>
         <StyledBadge
           overlap="circular"
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -38,7 +30,8 @@ export function UserMenu() {
             marginBottom: 'auto',
           }}
         >
-          Welcome, <span className={s.userColor}>{name}</span>!
+          Welcome, <span className={s.userColor}>{name}</span>!<br></br> Email:
+          <span className={s.userMail}> {email}</span>
         </p>
         <button
           className={s.btn}

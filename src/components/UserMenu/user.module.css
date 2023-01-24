@@ -1,6 +1,17 @@
 .userColor {
   color: rgb(255 112 112 / 87%);
 }
+.stack {
+  font-family: Neucha, sans-serif;
+  line-height: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 3px;
+}
+.userMail {
+  font-size: 10;
+  color: rgb(11 0 255 / 87%);
+}
 .btn {
   padding: 0 1px 0 1px;
   align-self: center;
