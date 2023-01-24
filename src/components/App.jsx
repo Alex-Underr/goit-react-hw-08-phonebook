@@ -3,7 +3,6 @@ import { lazy } from 'react';
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { fetchContacts } from 'redux/operations/contactsOperations';
 import { current } from 'redux/operations/authOperation';
 
 import NotFound from 'Pages/NotFound/NotFound';

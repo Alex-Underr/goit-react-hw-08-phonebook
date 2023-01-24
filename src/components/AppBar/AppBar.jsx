@@ -7,7 +7,6 @@ import { PuffLoader } from 'react-spinners';
 import { Outlet } from 'react-router-dom';
 import { getIsLoggedIn } from 'redux/selectors/selectors';
 import { useSelector } from 'react-redux';
-// import Contacts from 'Pages/Contacts/Contacts';
 export default function AppBar() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
@@ -15,7 +14,6 @@ export default function AppBar() {
       <Container>
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
-        {/* {isLoggedIn ? <Contacts /> : <UserMenu />} */}
       </Container>
       <Suspense
         fallback={
