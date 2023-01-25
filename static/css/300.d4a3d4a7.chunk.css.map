@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/300.d4a3d4a7.chunk.css","mappings":"AAAA,oBACE,qCAA4C,CAE5C,gBAAiB,CADjB,YAEF","sources":["Pages/Login/Login.module.css"],"sourcesContent":[".form {\n  background-color: rgba(255, 255, 255, 0.604);\n  padding: 30px;\n  border-radius: 5%;\n}\n"],"names":[],"sourceRoot":""}
